@@ -1,25 +1,90 @@
 import { NavLink } from "react-router-dom";
-import { FiShoppingCart, FiHeart, FiSearch } from "react-icons/fi";
+import {
+  FiSearch,
+  FiHeart,
+  FiShoppingCart,
+  FiUser,
+  FiSun,
+} from "react-icons/fi";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 bg-white border-b">
-      <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between">
+    <header className="w-full border-b border-gray-200 bg-white sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto h-16 flex items-center justify-between px-6">
 
-        <h1 className="text-2xl font-bold">
+        {/* Logo */}
+
+        <h1 className="font-extrabold text-lg tracking-wide">
           FASHION STORE
         </h1>
 
-        <nav className="hidden md:flex gap-8 font-medium">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/products">Products</NavLink>
-          <NavLink to="/cart">Cart</NavLink>
+        {/* Menu */}
+
+        <nav className="hidden md:flex items-center gap-8 text-sm text-gray-700">
+
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "font-semibold" : ""
+            }
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to="/products"
+            className={({ isActive }) =>
+              isActive ? "font-semibold" : ""
+            }
+          >
+            Products
+          </NavLink>
+
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              isActive ? "font-semibold" : ""
+            }
+          >
+            Cart
+          </NavLink>
+
+          <a href="#">Wishlist</a>
+
         </nav>
 
-        <div className="flex items-center gap-5 text-xl">
-          <FiSearch />
-          <FiHeart />
-          <FiShoppingCart />
+        {/* Right */}
+
+        <div className="flex items-center gap-4">
+
+          <div className="hidden lg:flex items-center border rounded-md px-3 h-9 w-60">
+
+            <FiSearch className="text-gray-400" />
+
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="ml-2 w-full outline-none text-sm"
+            />
+
+          </div>
+
+          <button className="text-lg hover:text-orange-500">
+            <FiSun />
+          </button>
+
+          <button className="text-lg hover:text-red-500">
+            <FiHeart />
+          </button>
+
+          <button className="text-lg hover:text-blue-600">
+            <FiShoppingCart />
+          </button>
+
+          <button className="text-lg hover:text-gray-700">
+            <FiUser />
+          </button>
+
         </div>
 
       </div>
