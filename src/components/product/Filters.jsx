@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const categories = [
   "All",
   "Men",
@@ -7,39 +9,47 @@ const categories = [
 ];
 
 export default function Filters() {
+  const [active, setActive] = useState("All");
+
   return (
-    <aside className="bg-white rounded-2xl border border-gray-200 p-6 sticky top-24">
+    <aside className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sticky top-24">
 
-      <h3 className="text-lg font-bold mb-6">
+      <h2 className="text-2xl font-bold mb-6">
         Categories
-      </h3>
+      </h2>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
 
-        {categories.map((item) => (
+        {categories.map((category) => (
 
           <button
-            key={item}
-            className="w-full rounded-lg px-4 py-3 text-left transition hover:bg-black hover:text-white"
+            key={category}
+            onClick={() => setActive(category)}
+            className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300
+              ${
+                active === category
+                  ? "bg-black text-white shadow-md"
+                  : "hover:bg-gray-100"
+              }`}
           >
-            {item}
+            {category}
           </button>
 
         ))}
 
       </div>
 
-      <div className="border-t my-8"></div>
+      <hr className="my-8" />
 
-      <h3 className="text-lg font-bold mb-5">
+      <h2 className="text-2xl font-bold mb-5">
         Sort By
-      </h3>
+      </h2>
 
-      <select className="w-full rounded-lg border p-3 outline-none">
+      <select className="w-full border border-gray-300 rounded-xl p-3 outline-none focus:border-black">
         <option>Featured</option>
         <option>Newest</option>
-        <option>Price Low → High</option>
-        <option>Price High → Low</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
       </select>
 
     </aside>
