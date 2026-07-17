@@ -1,35 +1,30 @@
-import { FiHeart } from "react-icons/fi";
+import { FiHeart, FiShoppingBag } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-xl duration-300 group">
-
-      <div className="relative bg-[#f8f8f8]">
-
-        <button className="absolute top-3 right-3 z-10 bg-white rounded-full p-2 shadow hover:text-red-500">
-          <FiHeart />
-        </button>
-
+    <div className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300">
+      <div className="relative overflow-hidden bg-gray-100">
         <img
           src={product.image}
           alt={product.name}
-          className="h-64 w-full object-cover group-hover:scale-105 duration-300"
+          className="h-72 w-full object-cover group-hover:scale-105 transition duration-500"
         />
 
+        <button className="absolute top-4 right-4 bg-white rounded-full p-2 shadow">
+          <FiHeart />
+        </button>
       </div>
 
-      <div className="p-4">
+      <div className="p-5">
+        <p className="text-sm text-gray-500">{product.category}</p>
 
-        <h3 className="font-semibold text-sm">
+        <h3 className="font-semibold text-lg mt-1">
           {product.name}
         </h3>
 
-        <p className="text-lg font-bold mt-2">
-          ${product.price}
-        </p>
-
-        <div className="flex gap-1 mt-2 text-yellow-500 text-xs">
+        <div className="flex items-center gap-1 text-yellow-500 mt-2">
           <FaStar />
           <FaStar />
           <FaStar />
@@ -37,8 +32,17 @@ export default function ProductCard({ product }) {
           <FaStar />
         </div>
 
-      </div>
+        <div className="flex justify-between items-center mt-5">
+          <span className="text-xl font-bold">${product.price}</span>
 
+          <Link
+            to={`/product/${product.id}`}
+            className="bg-black text-white rounded-full p-3"
+          >
+            <FiShoppingBag />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
